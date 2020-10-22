@@ -16,3 +16,4 @@ Miscellaneous
    :glob:
 
    MigrationFromSeminars/Index
+   ReusableRegistrationFields/Index
