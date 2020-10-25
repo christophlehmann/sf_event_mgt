@@ -370,6 +370,10 @@ class NotificationService
                 $template = 'Notification/User/RegistrationCancelled.html';
                 $subject = $settings['notification']['registrationCancelled']['userSubject'];
                 break;
+            case MessageType::REGISTRATION_WAITLIST_MOVE_UP:
+                $template = 'Notification/User/RegistrationWaitlistMoveUp.html';
+                $subject = $settings['notification']['registrationWaitlistMoveUp']['userSubject'];
+                break;
             case MessageType::CUSTOM_NOTIFICATION && $customNotification:
                 $customNotificationSettings = $settings['notification']['customNotifications'];
                 $templateKey = $customNotification->getTemplate();
@@ -494,6 +498,10 @@ class NotificationService
             case MessageType::REGISTRATION_CANCELLED:
                 $template = 'Notification/Admin/RegistrationCancelled.html';
                 $subject = $settings['notification']['registrationCancelled']['adminSubject'];
+                break;
+            case MessageType::REGISTRATION_WAITLIST_MOVE_UP:
+                $template = 'Notification/Admin/RegistrationWaitlistMoveUp.html';
+                $subject = $settings['notification']['registrationWaitlistMoveUp']['adminSubject'];
                 break;
             case MessageType::REGISTRATION_NEW:
             default:

@@ -15,10 +15,11 @@ namespace DERHANSEN\SfEventMgt\Utility;
  */
 class MessageType
 {
-    const REGISTRATION_NEW = 0;
-    const REGISTRATION_CONFIRMED = 1;
-    const CUSTOM_NOTIFICATION = 2;
-    const REGISTRATION_CANCELLED = 3;
-    const REGISTRATION_WAITLIST_NEW = 4;
-    const REGISTRATION_WAITLIST_CONFIRMED = 5;
+    public const REGISTRATION_NEW = 0;
+    public const REGISTRATION_CONFIRMED = 1;
+    public const CUSTOM_NOTIFICATION = 2;
+    public const REGISTRATION_CANCELLED = 3;
+    public const REGISTRATION_WAITLIST_NEW = 4;
+    public const REGISTRATION_WAITLIST_CONFIRMED = 5;
+    public const REGISTRATION_WAITLIST_MOVE_UP = 6;
 }

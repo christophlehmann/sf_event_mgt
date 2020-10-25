@@ -925,6 +925,25 @@ class EventTest extends UnitTestCase
     /**
      * @test
      */
+    public function getEnableWaitlistMoveupReturnsInitialValueForBoolean()
+    {
+        self::assertFalse(
+            $this->subject->getEnableWaitlistMoveup()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setEnableWaitlistMoveupForBooleanSetsEnableWaitlistMoveup()
+    {
+        $this->subject->setEnableWaitlistMoveup(true);
+        $this->assertTrue($this->subject->getEnableWaitlistMoveup());
+    }
+
+    /**
+     * @test
+     */
     public function getLinkReturnsInitialValueForLink()
     {
         $this->assertSame(

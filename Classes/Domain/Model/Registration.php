@@ -159,6 +159,13 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $confirmationUntil = null;
 
     /**
+     * The registration date
+     *
+     * @var \DateTime
+     */
+    protected $registrationDate;
+
+    /**
      * Indicates if record is hidden
      *
      * @var bool
@@ -699,6 +706,26 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getConfirmationUntil()
     {
         return $this->confirmationUntil;
+    }
+
+    /**
+     * Returns registrationDate
+     *
+     * @return \DateTime
+     */
+    public function getRegistrationDate()
+    {
+        return $this->registrationDate;
+    }
+
+    /**
+     * Sets registrationDate
+     *
+     * @param \DateTime $registrationDate
+     */
+    public function setRegistrationDate($registrationDate)
+    {
+        $this->registrationDate = $registrationDate;
     }
 
     /**

@@ -593,6 +593,7 @@ class EventController extends AbstractController
 
             $registration->setEvent($event);
             $registration->setPid($event->getPid());
+            $registration->setRegistrationDate(new \DateTime());
             $registration->setConfirmationUntil($confirmationUntil);
             $registration->setLanguage($GLOBALS['TSFE']->config['config']['language']);
             $registration->setFeUser($this->registrationService->getCurrentFeUserObject());
@@ -601,7 +602,7 @@ class EventController extends AbstractController
             $this->registrationRepository->add($registration);
 
             // Persist registration, so we have an UID
-            $this->objectManager->get(PersistenceManager::class)->persistAll();
+            $this->persistAll();
 
             if ($isWaitlistRegistration) {
                 $messageType = MessageType::REGISTRATION_WAITLIST_NEW;
@@ -865,7 +866,13 @@ class EventController extends AbstractController
             // Dispatch signal, so waitlist registrations can be moved up
             $this->signalDispatch(__CLASS__, __FUNCTION__ . 'WaitlistMoveUp', [$event, $this]);
 
-            // Flush page cache for event, since new registration has been added
+            // Persist changes, so following functions can work with $event properties (e.g. amount of registrations)
+            $this->persistAll();
+
+            // Move up waitlist registrations if configured on event basis
+            $this->registrationService->moveUpWaitlistRegistrations($event, $this->settings);
+
+            // Flush page cache for event, since amount of registrations has changed
             $this->eventCacheService->flushEventCache($event->getUid(), $event->getPid());
         }
 
@@ -1039,6 +1046,14 @@ class EventController extends AbstractController
         }
 
         return $event;
+    }
+
+    /**
+     * Calls persistAll() of the persistenceManager
+     */
+    protected function persistAll()
+    {
+        $this->objectManager->get(PersistenceManager::class)->persistAll();
     }
 
     /**
