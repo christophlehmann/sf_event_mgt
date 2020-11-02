@@ -1526,9 +1526,9 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getRegistrations()
     {
         if ($GLOBALS['TSFE']->sys_language_uid > 0) {
-            return $this->getRegistrationsDefaultLanguage(false);
+            // This is wrong since registrations are saved in foreign language
+            //return $this->getRegistrationsDefaultLanguage(false);
         }
-
         return $this->registration;
     }
 
