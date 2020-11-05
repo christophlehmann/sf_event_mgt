@@ -144,8 +144,8 @@ class RegistrationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $constraints = [];
         $query = $this->createQuery();
         $query->getQuerySettings()
-            ->setLanguageOverlayMode(true)
-            ->setRespectSysLanguage(true);
+            ->setLanguageOverlayMode(false)
+            ->setRespectSysLanguage(false);
         $this->setStoragePageConstraint($query, $demand, $constraints);
         $this->setDisplayModeConstraint($query, $demand, $constraints);
         $this->setUserConstraint($query, $demand, $constraints);
